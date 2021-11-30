@@ -14,8 +14,7 @@ class CreateCallsTable extends Migration
     public function up()
     {
         Schema::create('calls', function (Blueprint $table) {
-            // Using UUID instead of auto increment.
-            $table->uuid('id')->primary();
+            $table->id();
             $table->uuid('user_id')->nullable(false);
             $table->uuid('client_id')->nullable(false);
             $table->enum('client_type', ['Carer', 'Nurse']);
@@ -28,6 +27,9 @@ class CreateCallsTable extends Migration
             // Create foreign keys for user_id to users table and client_id to clients table.
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+
+            // Using composite key unique through you do not save record with the same user_id, client_id and date.
+            $table->unique(['user_id', 'client_id', 'date']);
         });
     }
 
