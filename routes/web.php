@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CallController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('calls.index');
+});
+
+Route::prefix('calls')->group(function () {
+    Route::get('/',                 [CallController::class, 'index'])->name('calls.index');
+    Route::get('/import-export',    [CallController::class, 'importExport'])->name('calls.import_export');
+    Route::post('/import',          [CallController::class, 'import'])->name('calls.import');
+    Route::get('/export',           [CallController::class, 'export'])->name('calls.export');
 });

@@ -113,7 +113,7 @@ class CallsImport implements ToModel, WithStartRow, SkipsOnFailure, WithValidati
 
         // If there is duplicate, throw validation exception with message.
         if (!is_null($duplicate)) {
-            throw \Illuminate\Validation\ValidationException::withMessages(['duplicate' => 'It appears that you have duplicate call logs in your file, rolling back everything.']);
+            throw \Illuminate\Validation\ValidationException::withMessages(['It appears that you have duplicate call logs in your file, rolling back everything.']);
         }
 
         return false;
