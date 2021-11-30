@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasUuid;
 
-class User extends Model
+
+class Client extends Model
 {
     use HasUuid, HasFactory;
 

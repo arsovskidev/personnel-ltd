@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\HasUuid;
 
-class User extends Model
+
+class Call extends Model
 {
-    use HasUuid, HasFactory;
+    use HasFactory;
 
     /**
      * The Attributes that are allowed for mass assignment.
@@ -16,6 +16,12 @@ class User extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'user_id',
+        'client_id',
+        'client_type',
+        'type',
+        'duration',
+        'score',
+        'date',
     ];
 }
