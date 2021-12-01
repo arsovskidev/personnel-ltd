@@ -17,6 +17,7 @@ class CreateClientsTable extends Migration
             // Using UUID instead of auto increment.
             $table->uuid('id')->primary();
             $table->string('name')->unique();
+            $table->enum('type', ['Carer', 'Nurse']);
             $table->timestamps();
         });
     }

@@ -11,14 +11,20 @@
                 <span class="nav_logo-name">Personnel LTD</span>
             </a>
             <div class="nav_list">
-                <a href="{{ route('calls.index') }}" class="nav_link {{ Route::is('calls.index') ? 'active' : '' }}">
+                <a href="{{ route('calls.index') }}"
+                    class="nav_link {{ request()->segment(1) == 'calls' ? 'active' : '' }}">
                     <i class="bx bxs-phone-call nav_icon"></i>
                     <span class="nav_name">Calls</span>
                 </a>
-                <a href="{{ route('calls.import_export') }}"
-                    class="nav_link {{ Route::is('calls.import_export') ? 'active' : '' }}">
+                <a href="{{ route('users.index') }}"
+                    class="nav_link {{ request()->segment(1) == 'users' ? 'active' : '' }}">
+                    <i class="bx bxs-user nav_icon"></i>
+                    <span class="nav_name">Users</span>
+                </a>
+                <a href="{{ route('resources.index') }}"
+                    class="nav_link {{ request()->segment(1) == 'resources' ? 'active' : '' }}">
                     <i class="bx bxs-data nav_icon"></i>
-                    <span class="nav_name">Import / Export</span>
+                    <span class="nav_name">Resources</span>
                 </a>
 
             </div>

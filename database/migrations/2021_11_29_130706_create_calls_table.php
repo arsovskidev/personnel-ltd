@@ -17,7 +17,6 @@ class CreateCallsTable extends Migration
             $table->id();
             $table->uuid('user_id')->nullable(false);
             $table->uuid('client_id')->nullable(false);
-            $table->enum('client_type', ['Carer', 'Nurse']);
             $table->enum('type', ['Incoming', 'Outgoing']);
             $table->integer('duration');
             $table->integer('score');

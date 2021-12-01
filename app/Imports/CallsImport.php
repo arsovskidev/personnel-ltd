@@ -64,23 +64,23 @@ class CallsImport implements ToModel, WithStartRow, SkipsOnFailure, WithValidati
         /**
          * Check if the user and client exists in the database,
          * if not then create them with the name in the row.
+         * For the client, add the type.
          */
         $user = User::firstOrCreate(['name' => $row['user']]);
-        $client = Client::firstOrCreate(['name' => $row['client']]);
+        $client = Client::firstOrCreate(['name' => $row['client'], 'type' => $row['client_type']]);
 
         // Get the id's from the user and client.
         $user_id = $user->id;
         $client_id = $client->id;
 
         // Calling the function to check for duplicate call.
-        if (!$this->isDuplicateCall($user_id, $client_id, $row['date'])) {
+        if (!$this->isDuplicateCall($user_id, $client_id, $row['duration'], $row['external_call_score'], $row['type_of_call'], $row['date'])) {
 
             // Create new Call with the ids for the user and client,
             // and with all other data in the row.
             return new Call([
                 'user_id' => $user_id,
                 'client_id' => $client_id,
-                'client_type' => $row['client_type'],
                 'date' => $row['date'],
                 'duration' => $row['duration'],
                 'type' => $row['type_of_call'],
@@ -104,10 +104,13 @@ class CallsImport implements ToModel, WithStartRow, SkipsOnFailure, WithValidati
      * @param string $date The date from the row.
      * @param string $user_id The user id.
      * @param string $client_id The client id.
+     * @param string $duration The duration from the row.
+     * @param string $score The score from the row.
+     * @param string $type The type from the row.
      * 
      * @return bool
      */
-    public function isDuplicateCall(string $user_id, string $client_id, string $date): bool
+    public function isDuplicateCall(string $user_id, string $client_id, string $duration, string $score, string $type, string $date): bool
     {
         $duplicate = Call::where('user_id', $user_id)->where('client_id', $client_id)->where('date', $date)->first();
 

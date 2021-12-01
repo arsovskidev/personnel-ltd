@@ -54,15 +54,6 @@ section {
 .text-blue {
     color: var(--color-blue);
 }
-.text-green {
-    color: #8ab738;
-}
-.text-orange {
-    color: #b77c38;
-}
-.text-red {
-    color: #b73838;
-}
 
 .btn-blue,
 .btn-blue:hover {
@@ -223,30 +214,4 @@ section {
     .body-base {
         padding-left: calc(var(--nav-width) + 188px);
     }
-}
-.pagination > li > a,
-.pagination > li > span {
-    color: var(--gray-color);
-}
-
-.pagination > .active > a,
-.pagination > .active > a:focus,
-.pagination > .active > a:hover,
-.pagination > .active > span,
-.pagination > .active > span:focus,
-.pagination > .active > span:hover {
-    background-color: var(--gray-color);
-    border-color: var(--gray-color);
-}
-
-.page-item.active .page-link {
-    background-color: var(--gray-color);
-    border-color: var(--gray-color);
-}
-.page-link:hover {
-    color: var(--gray-color);
-}
-.pagination > li > a,
-.pagination > li > span:hover {
-    color: var(--gray-color);
 }
