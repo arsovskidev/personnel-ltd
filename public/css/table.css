@@ -1,0 +1,82 @@
+/* Table Design */
+.panel {
+    background: linear-gradient(to right, #13a0d8, #118ec0);
+    padding: 0;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05), 0 0 0 8px rgba(0, 0, 0, 0.05);
+}
+.panel .panel-body {
+    padding: 0;
+}
+.panel .panel-body .table thead tr th {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 12px;
+    border: none;
+}
+.panel .panel-body .table tbody tr td {
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 12px;
+    vertical-align: middle;
+    border: none;
+}
+.panel .panel-body .table tbody tr:nth-child(even) {
+    background-color: #ffffff0d;
+}
+.panel .panel-body .table tbody .action-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.panel .panel-body .table tbody .action-list li {
+    display: inline-block;
+    margin: 0 5px;
+}
+.panel .panel-body .table tbody .action-list li a {
+    color: #fff;
+    font-size: 15px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease 0s;
+}
+.panel .table > :not(:first-child) {
+    border-top: 2px solid #ffffff50;
+}
+
+/* Pagination Design */
+.pagination > li > a,
+.pagination > li > span {
+    color: var(--gray-color);
+}
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: #13a0d8;
+    border-color: #13a0d8;
+}
+.page-item.active .page-link {
+    background-color: #13a0d8;
+    border-color: #13a0d8;
+}
+.page-link:hover {
+    color: #13a0d8;
+}
+.pagination > li > a,
+.pagination > li > span:hover {
+    color: #13a0d8;
+}
+
+/* Actions Design */
+.btn-delete-call,
+.btn-update-call-modal,
+.btn-create-call-modal {
+    cursor: pointer;
+}
