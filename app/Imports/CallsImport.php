@@ -64,9 +64,10 @@ class CallsImport implements ToModel, WithStartRow, SkipsOnFailure, WithValidati
         /**
          * Check if the user and client exists in the database,
          * if not then create them with the name in the row.
+         * For the client, add the type.
          */
         $user = User::firstOrCreate(['name' => $row['user']]);
-        $client = Client::firstOrCreate(['name' => $row['client']]);
+        $client = Client::firstOrCreate(['name' => $row['client'], 'type' => $row['client_type']]);
 
         // Get the id's from the user and client.
         $user_id = $user->id;
@@ -80,7 +81,6 @@ class CallsImport implements ToModel, WithStartRow, SkipsOnFailure, WithValidati
             return new Call([
                 'user_id' => $user_id,
                 'client_id' => $client_id,
-                'client_type' => $row['client_type'],
                 'date' => $row['date'],
                 'duration' => $row['duration'],
                 'type' => $row['type_of_call'],

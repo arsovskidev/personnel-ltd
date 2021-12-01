@@ -36,7 +36,7 @@ class CallsExport implements FromCollection, WithHeadings, WithMapping
         return [
             $call->user->name,
             $call->client->name,
-            $call->client_type,
+            $call->client->type,
             $call->date,
             $call->duration,
             $call->type,

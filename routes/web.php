@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\CallController;
+use App\Http\Controllers\WebControllers\CallController;
+use App\Http\Controllers\WebControllers\UserController;
+use App\Http\Controllers\WebControllers\ResourceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +22,17 @@ Route::get('/', function () {
 
 Route::prefix('calls')->group(function () {
     Route::get('/',                 [CallController::class, 'index'])->name('calls.index');
-    Route::get('/import-export',    [CallController::class, 'importExport'])->name('calls.import_export');
-    Route::post('/import',          [CallController::class, 'import'])->name('calls.import');
-    Route::get('/export',           [CallController::class, 'export'])->name('calls.export');
+    Route::post('/',                [CallController::class, 'store'])->name('calls.store');
+    Route::delete('/{id}',          [CallController::class, 'destroy'])->name('calls.destroy');
+});
+
+Route::prefix('resources')->group(function () {
+    Route::get('/',                 [ResourceController::class, 'index'])->name('resources.index');
+    Route::post('/import',          [ResourceController::class, 'import'])->name('resources.import');
+    Route::get('/export',           [ResourceController::class, 'export'])->name('resources.export');
+});
+
+Route::prefix('users')->group(function () {
+    Route::get('/',                 [UserController::class, 'index'])->name('users.index');
+    Route::get('/{id}',             [UserController::class, 'show'])->name('users.show');
 });

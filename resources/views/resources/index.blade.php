@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Personnel LTD')
+@section('title', 'Personnel LTD | Importing & Exporting')
 
 @section('css')
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
@@ -14,27 +14,34 @@
         <div>
             <section class="content-section">
                 <div class="container-fluid">
-                    <h1 class="fw-normal">Import / Export</h1>
+                    <h1 class="fw-normal">Importing & Exporting Calls</h1>
                     <div class="mt-5">
                         <div class="container">
                             <div class="row">
-                                {{-- Import Column --}}
+                                {{-- Import Column. --}}
                                 <div class="col-md-6 mt-4">
                                     <div class="card">
-                                        <div class="card-body text-center" style="height: 255px;">
-                                            <h5 class="card-title mb-5">Import</h5>
-                                            <form id="importForm" action="{{ route('calls.import') }}"
+                                        <div class="card-body text-center" style="height: 350px;">
+                                            <div>
+                                                <h5 class="card-title">Import</h5>
+                                                <i class='bx bx-import text-blue fs-1 mb-5'></i>
+                                            </div>
+                                            <form id="importForm" action="{{ route('resources.import') }}"
                                                 enctype="multipart/form-data" class="dropzone">
                                                 @csrf
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                                {{-- Export Column --}}
+                                {{-- Export Column. --}}
                                 <div class="col-md-6 mt-4">
                                     <div class="card">
-                                        <div class="card-body text-center" style="height: 255px;">
-                                            <h5 class="card-title mb-5">Export</h5>
+                                        <div class="card-body text-center" style="height: 350px;">
+                                            <div>
+                                                <h5 class="card-title">Export</h5>
+                                                <i class='bx bx-export text-blue fs-1 mb-5'></i>
+                                            </div>
+
                                             <button id="export" class="btn btn-lg btn-blue">Export Data</button>
                                             </form>
                                         </div>
@@ -75,12 +82,20 @@
                         }
                     });
                     this.on("error", function(file, response) {
+                        // Checking the error type.
+                        let message = "";
+                        if (response.errors) {
+                            message = response.errors[0];
+                        } else if (response.error) {
+                            message = response.error;
+                        } else {
+                            message = "Importing failed, try again later."
+                        }
                         // If there are errors with uploading, display error notification with iziToast and write message on the uploaded file.
-                        $(file.previewElement).addClass("dz-error").find('.dz-error-message').text(response
-                            .errors[0]);
+                        $(file.previewElement).addClass("dz-error").find('.dz-error-message').text(message);
                         iziToast.error({
                             title: 'Error',
-                            message: response.errors[0],
+                            message: message,
                         });
                     });
                     this.on("success", function(file, response) {
@@ -100,7 +115,7 @@
                     title: 'Exporting',
                     message: "The file is generating, stand still and don't refresh the page.",
                 });
-                window.location = "{{ route('calls.export') }}";
+                window.location = "{{ route('resources.export') }}";
             });
         </script>
     </body>
