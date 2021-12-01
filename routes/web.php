@@ -23,6 +23,8 @@ Route::get('/', function () {
 Route::prefix('calls')->group(function () {
     Route::get('/',                 [CallController::class, 'index'])->name('calls.index');
     Route::post('/',                [CallController::class, 'store'])->name('calls.store');
+    Route::get('/{id}',             [CallController::class, 'show'])->name('calls.show');
+    Route::put('/{id}',             [CallController::class, 'update'])->name('calls.update');
     Route::delete('/{id}',          [CallController::class, 'destroy'])->name('calls.destroy');
 });
 

@@ -74,7 +74,7 @@ class CallsImport implements ToModel, WithStartRow, SkipsOnFailure, WithValidati
         $client_id = $client->id;
 
         // Calling the function to check for duplicate call.
-        if (!$this->isDuplicateCall($user_id, $client_id, $row['date'])) {
+        if (!$this->isDuplicateCall($user_id, $client_id, $row['duration'], $row['external_call_score'], $row['type_of_call'], $row['date'])) {
 
             // Create new Call with the ids for the user and client,
             // and with all other data in the row.
@@ -104,10 +104,13 @@ class CallsImport implements ToModel, WithStartRow, SkipsOnFailure, WithValidati
      * @param string $date The date from the row.
      * @param string $user_id The user id.
      * @param string $client_id The client id.
+     * @param string $duration The duration from the row.
+     * @param string $score The score from the row.
+     * @param string $type The type from the row.
      * 
      * @return bool
      */
-    public function isDuplicateCall(string $user_id, string $client_id, string $date): bool
+    public function isDuplicateCall(string $user_id, string $client_id, string $duration, string $score, string $type, string $date): bool
     {
         $duplicate = Call::where('user_id', $user_id)->where('client_id', $client_id)->where('date', $date)->first();
 

@@ -2,15 +2,6 @@
 
 @section('title', 'Personnel LTD | ' . $user->name)
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-@endsection
-
-@section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-@endsection
-
 @section('body')
 
     <body id="body-base">
@@ -54,7 +45,9 @@
                                                             <td>{{ $call->score }}</td>
                                                             <td>{{ $call->date }}</td>
                                                             <td class="text-center">
-                                                                <i class='btn-edit-call bx bx-edit-alt mx-1'></i>
+                                                                <i class='btn-update-call-modal bx bx-edit-alt mx-1'
+                                                                    data-url='{{ route('calls.show', $call->id) }}'
+                                                                    data-id='{{ $call->id }}'></i>
                                                                 <i class='btn-delete-call bx bx-trash-alt mx-1'
                                                                     data-url='{{ route('calls.destroy', $call->id) }}'></i>
                                                             </td>
@@ -71,6 +64,8 @@
                 </div>
             </section>
         </div>
+        {{-- Updating call Modal. --}}
+        @include('components.update_modal')
         <script src="{{ asset('js/table-buttons.js') }}"></script>
     </body>
 @endsection

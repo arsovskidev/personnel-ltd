@@ -2,14 +2,6 @@
 
 @section('title', 'Personnel LTD | Users')
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
-@endsection
-
-@section('js')
-    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"></script>
-@endsection
-
 @section('body')
 
     <body id="body-base">

@@ -76,7 +76,7 @@
 
 /* Actions Design */
 .btn-delete-call,
-.btn-edit-call,
+.btn-update-call-modal,
 .btn-create-call-modal {
     cursor: pointer;
 }
